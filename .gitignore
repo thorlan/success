@@ -1,1 +1,3 @@
 /target/
+src/main/java/com/succesgeneration/config/AmazonConfiguration.java
+src/main/java/com/succesgeneration/config/JPAConfiguration.java

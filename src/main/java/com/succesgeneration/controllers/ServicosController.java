@@ -23,7 +23,7 @@ public class ServicosController {
 
 	@Autowired
 	private ServicoDAO servicoDao;
-
+	
 	@RequestMapping("/servicos/form")
 	public ModelAndView form() {
 
@@ -75,8 +75,8 @@ public class ServicosController {
 		List<Servico> servicos = servicoDao.listar();
 		ModelAndView modelAndView = new ModelAndView("/servicos/lista");
 		modelAndView.addObject("servicos", servicos);
-		
 		modelAndView.addObject("mensagem", mensagem);
+		mensagem = "";
 
 		return modelAndView;
 	}
@@ -88,6 +88,10 @@ public class ServicosController {
 		servicoDao.excluir(servico);
 		// FAZ LIMPAR A BARRA DE ENDERECO, EVITANDO QUE UM F5 LANCE UMA EXCEPTION
 		ModelAndView modelAndView = new ModelAndView("redirect:/servicos");
+		
+		mensagem = "Serviço apagado com sucesso";
+		//modelAndView.addObject("mensagem", mensagem);
+		
 		return modelAndView;
 	}
 

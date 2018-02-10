@@ -26,7 +26,7 @@ public class FotoController {
 	
 	@Autowired
 	private ServicoDAO servicoDao;
-
+	
 	private List<Foto> fotos = new ArrayList<>();
 	
 	//REFATORAR ESSE METODO, UMA PARTE SO POPULA A ARRAYLIST E O SALVAR REALMENTE POE NO BANCO
