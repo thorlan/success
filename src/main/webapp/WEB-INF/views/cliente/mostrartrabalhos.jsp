@@ -4,7 +4,7 @@
 	<div class="fotos-trabalhos">
 		<c:forEach items="${servicos}" var="servico">
 			<div
-				style="background-image: url(${servico.principal.caminho })"; class="miniatura">
+				style="background-image: url(${servico.fotoPrincipal.caminho })"; class="miniatura">
 				<a href="${s:mvcUrl('SC#mostrarServico').arg(0,servico.id).build() }">
 					<div class="blackbox">
 						<div class="blackbox-text">

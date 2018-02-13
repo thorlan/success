@@ -86,4 +86,20 @@ public class FotoController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping("/tornarprincipal")
+	public ModelAndView tornarPrincipal(Long fotoId) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/servicos/mostrarComFoto");
+		Foto foto = fotoDao.find(fotoId);
+		
+		//Contornei o erro do hibernate ehcache assim, se nao der um "update" no servico, ele ainda busca
+		//a lista de fotos do servico em cache e me da erro quando excluo uma foto!
+		Servico servico = servicoDao.find(foto.getServico().getId());
+		servico.setFotoPrincipal(foto);
+		servicoDao.gravar(servico);
+
+		modelAndView.addObject("servicoId", servico.getId());
+		
+		return modelAndView;
+	}
 }

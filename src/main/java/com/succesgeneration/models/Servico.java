@@ -10,47 +10,41 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 public class Servico {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nome;
 	private String descricao;
-	
-	//Relação one to one
+
+	// Relação one to one
 	@Embedded
 	private Endereco endereco;
+	
+	@OneToOne
+	private Foto fotoPrincipal;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate inicio;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate termino;
-	
-	//Um servico, varias fotos!
-	@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-	@OneToMany(mappedBy="servico")
+
+	// Um servico, varias fotos!
+	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	@OneToMany(mappedBy = "servico")
 	private List<Foto> fotos = new ArrayList<>();
-	
-	public Foto getPrincipal() {
-		if (fotos == null | fotos.size() == 0){
-			Foto foto = new Foto();
-			foto.setCaminho("https://s3.amazonaws.com/successgeneration-teste/photonotavailable.jpeg");
-			System.out.println("------ FOTO VAZIA CRIADA----------");
-			fotos.add(foto);
-		}
-		return this.fotos.get(0);
-	}
-	
+
 	public Servico() {
 
 	}
@@ -61,11 +55,25 @@ public class Servico {
 		this.inicio = inicio;
 		this.endereco = endereco;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
+	
+	public Foto getFotoPrincipal() {
+		if (fotos == null | fotos.size() == 0) {
+			Foto foto = new Foto();
+			foto.setCaminho("https://s3.amazonaws.com/successgeneration-teste/photonotavailable.jpeg");
+			System.out.println("------ FOTO VAZIA CRIADA----------");
+			this.fotoPrincipal = foto;
+		}
+		
+		return this.fotoPrincipal;
+	}
 
+	public void setFotoPrincipal(Foto fotoPrincipal) {
+		this.fotoPrincipal = fotoPrincipal;
+	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -123,7 +131,7 @@ public class Servico {
 		return "Servico [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", endereco=" + endereco
 				+ ", inicio=" + inicio + ", termino=" + termino + ", fotos=" + fotos + "]";
 	}
-	
+
 	public void setFoto(Foto foto) {
 		this.fotos.add(foto);
 	}

@@ -18,12 +18,12 @@ import com.succesgeneration.models.Servico;
 public class ServicosController {
 
 	private String mensagem = "";
-	
+
 	private Logger logger = Logger.getLogger(ServicosController.class);
 
 	@Autowired
 	private ServicoDAO servicoDao;
-	
+
 	@RequestMapping("/servicos/form")
 	public ModelAndView form() {
 
@@ -44,26 +44,22 @@ public class ServicosController {
 
 		Foto foto = new Foto();
 		foto.setServico(servico);
-		
-		
-		
+
 		if (servico.getId() != null) {
 			modelAndView = new ModelAndView("redirect:/servicos/mostrarComFoto");
 		} else {
 			modelAndView = new ModelAndView("/servicos/fotoservico");
 		}
-		
+
 		logger.info("Inserindo novo serviço no banco de dados \n");
 		servicoDao.gravar(servico);
-		
+
 		logger.info(
 				"Serviço : " + servico.getNome() + " , de ID " + servico.getId() + " foi inserido no banco de dados");
 
 		modelAndView.addObject("foto", foto);
 		modelAndView.addObject("servico", servico);
-		modelAndView.addObject("servicoId" , servico.getId());
-	
-		
+		modelAndView.addObject("servicoId", servico.getId());
 
 		return modelAndView;
 
@@ -76,6 +72,7 @@ public class ServicosController {
 		logger.info(" Retrieving all services stored in database ");
 		List<Servico> servicos = servicoDao.listar();
 		ModelAndView modelAndView = new ModelAndView("/servicos/lista");
+
 		modelAndView.addObject("servicos", servicos);
 		modelAndView.addObject("mensagem", mensagem);
 		mensagem = "";
@@ -90,10 +87,10 @@ public class ServicosController {
 		servicoDao.excluir(servico);
 		// FAZ LIMPAR A BARRA DE ENDERECO, EVITANDO QUE UM F5 LANCE UMA EXCEPTION
 		ModelAndView modelAndView = new ModelAndView("redirect:/servicos");
-		
+
 		mensagem = "Serviço apagado com sucesso";
-		//modelAndView.addObject("mensagem", mensagem);
-		
+		// modelAndView.addObject("mensagem", mensagem);
+
 		return modelAndView;
 	}
 
@@ -108,20 +105,21 @@ public class ServicosController {
 
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/cliente/mostrartrabalhos")
 	public ModelAndView mostrarServicos() {
 		ModelAndView modelAndView = new ModelAndView("/cliente/mostrartrabalhos");
 		modelAndView.addObject("servicos", servicoDao.listar());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/cliente/servico")
 	public ModelAndView mostrarServico(Long servicoId) {
 		ModelAndView modelAndView = new ModelAndView("/cliente/servico");
 		Servico servico = servicoDao.find(servicoId);
 		modelAndView.addObject("servico", servico);
-		
+
 		return modelAndView;
 	}
+	
 }
