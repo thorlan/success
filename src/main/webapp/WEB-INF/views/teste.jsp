@@ -2,5 +2,4 @@
 
 	<div class="main"></div>
 
-
 <%@ include file="/WEB-INF/views/rodape.jsp"%>

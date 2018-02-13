@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,7 +10,6 @@
 <head>
 
 <c:url value="/resources/css" var="cssPath" />
-
 <c:url value="/resources/imagens" var="imgPath" />
 <c:url value="/resources/imagens/servicos-fotos" var="imgServicoPath" />
 <link rel="stylesheet" href="${cssPath}/styles.css" />
@@ -20,29 +18,24 @@
 
 
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-
-
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-
-<link href="http://fonts.googleapis.com/css?family=Cookie"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Cookie"rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Dhurjati" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Succes Generation</title>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css?family=Dhurjati"
-	rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+<title>Success Generation</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 
 </head>
 
@@ -85,8 +78,8 @@
 				<li><a href="/succesgeneration/admin/">Admin</a>
 					<ul class="submenu">
 						<li><a href="/succesgeneration/servicos/form">Adicionar
-								ServiÃ§o</a></li>
-						<li><a href="/succesgeneration/servicos/">ServiÃ§os</a></li>
+								Serviço</a></li>
+						<li><a href="/succesgeneration/servicos/">Serviços</a></li>
 						<li><a href="/succesgeneration/logout">Logout</a></li>
 					</ul></li>
 			</security:authorize>

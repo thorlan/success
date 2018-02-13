@@ -26,33 +26,29 @@ public class AppWebConfiguration implements WebMvcConfigurer {
 		return resolver;
 	}
 
-	@Override //Liberar pasta resources
+	@Override // Liberar pasta resources
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry
-				.addResourceHandler("/resources/**")
-				.addResourceLocations("/resources/");
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
-	
-	@Override //Liberar o servlet padrão, deixa de bloquear tudo
+
+	@Override // Liberar o servlet padrão, deixa de bloquear tudo
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
+
 	@Bean
 	public MultipartResolver multiPartResolver() {
 		return new StandardServletMultipartResolver();
 	}
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addWebRequestInterceptor(getOpenEntityManagerInViewInterceptor());
 	}
 
 	@Bean
-	public OpenEntityManagerInViewInterceptor getOpenEntityManagerInViewInterceptor() { 
-	    return new OpenEntityManagerInViewInterceptor();
+	public OpenEntityManagerInViewInterceptor getOpenEntityManagerInViewInterceptor() {
+		return new OpenEntityManagerInViewInterceptor();
 	}
-	
-	
 
 }

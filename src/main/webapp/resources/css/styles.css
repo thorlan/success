@@ -880,9 +880,9 @@ px
 }
 }
 @media ( max-width : 1000px) {
-    /* .navigation li {
+     .navigation li {
         display: none;
-    } */
+    } 
     .navigation li.threeline-icon {
         display: inline-block;
         font-size: 30px;

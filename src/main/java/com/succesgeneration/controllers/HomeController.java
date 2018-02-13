@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.succesgeneration.models.Servico;
+
 @Controller
 public class HomeController {
 
@@ -18,8 +20,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/teste")
-	public String teste() {
-		return "/teste";
+	public ModelAndView teste() {
+		ModelAndView modelAndView = new ModelAndView("/teste");
+		modelAndView.addObject("servico", new Servico());
+		return modelAndView;
 	}
 	
 }

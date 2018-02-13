@@ -45,6 +45,8 @@ public class ServicosController {
 		Foto foto = new Foto();
 		foto.setServico(servico);
 		
+		
+		
 		if (servico.getId() != null) {
 			modelAndView = new ModelAndView("redirect:/servicos/mostrarComFoto");
 		} else {
