@@ -36,7 +36,7 @@ public class ServicosController {
 
 		return modelAndView;
 	}
-
+	
 	@RequestMapping("/servicos/servicosAdd") // recupera o modelAttribute do form
 	public ModelAndView servicosAdd(@ModelAttribute("servico") Servico servico) {
 

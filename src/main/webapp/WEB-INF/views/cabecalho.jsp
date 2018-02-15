@@ -71,6 +71,7 @@
 			<li><a href="/succesgeneration/cliente/mostrartrabalhos">Nossos
 					Trabalhos</a></li>
 			<li><a href="">Sobre a Empresa</a></li>
+			<li><a href="/succesgeneration/cliente/contato">Contato</a></li>
 			<security:authorize access="!isAuthenticated()">
 				<li><a href="/succesgeneration/login">Login</a>
 			</security:authorize>

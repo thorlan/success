@@ -14,8 +14,7 @@
 			<form:input type="text" path="termino" placeholder="Termino dd/mm/aaaa" />
 			<form:input type="text" path="endereco.pais" placeholder="País" />
 			<form:input type="text" path="endereco.localidade" placeholder="Local" />
-			
-			<form:input type="text" path="descricao" placeholder="Descrição" />
+			<form:textarea class="form-control" path="descricao" placeholder="Descrição" rows="10" cols="30" />
 				
 			<c:if test="${servico.id != null}">
 				<div class="form-group">

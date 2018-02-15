@@ -17,8 +17,7 @@
 			<form:input type="text" path="endereco.pais" placeholder="País" />
 			<form:input type="text" path="endereco.localidade"
 				placeholder="Local" />
-			<form:textarea placeholder="Descrição" path="descricao"
-				onkeyup="adjust_textarea(this)"></form:textarea>
+			<form:textarea class="form-control" placeholder="Descrição" path="descricao" rows="10" cols="30"></form:textarea>
 			<c:if test="${servico.id != null}">
 				<div class="form-group">
 					<input type="submit" value="Atualizar" class="btn btn-primary" />
@@ -32,8 +31,6 @@
 			</c:if>
 		</form:form>
 	</div>
-
-
 
 
 	<div class="form-style-8 voando">
@@ -63,7 +60,7 @@
 				<c:if test="${servico.fotoPrincipal.id != foto.id}">
 					<a href="${s:mvcUrl('FC#tornarPrincipal').arg(0,foto.id).build() }">
 						<div class="deletar-icone">
-							<img src="${imgPath}/mainPageIcon.png" />
+							<img src="${imgPath}/mainPageIcon.png" alt = "Tornar foto principal" title="Mostrar como capa em 'nossos serviços'"/>
 						</div>
 					</a>
 				</c:if>
@@ -73,7 +70,7 @@
 				<div class="desc">${foto.descricao }</div>
 				<a href="${s:mvcUrl('FC#excluirFoto').arg(0,foto.id).build() }">
 					<div class="deletar-icone">
-						<img src="${imgPath}/lixeira.png" />
+						<img src="${imgPath}/lixeira.png" title ="Deletar foto" />
 					</div>
 				</a>
 			</div>

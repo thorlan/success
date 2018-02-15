@@ -1,8 +1,12 @@
 package com.succesgeneration.config;
 
+import java.util.Properties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -49,6 +53,24 @@ public class AppWebConfiguration implements WebMvcConfigurer {
 	@Bean
 	public OpenEntityManagerInViewInterceptor getOpenEntityManagerInViewInterceptor() {
 		return new OpenEntityManagerInViewInterceptor();
+	}
+	
+	@Bean
+	public MailSender mailSender(){
+
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setUsername("successgenerationPT@gmail.com");
+		mailSender.setPassword("XXXXXXXX");
+		mailSender.setPort(587);
+		
+		Properties mailProperties = new Properties();
+		mailProperties.put("mail.smtp.auth", true);
+		mailProperties.put("mail.smtp.starttls.enable", true);
+		mailSender.setJavaMailProperties(mailProperties);
+		
+		return mailSender;
+	
 	}
 
 }
