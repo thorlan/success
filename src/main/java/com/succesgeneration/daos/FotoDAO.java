@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,8 +28,7 @@ public class FotoDAO {
 		Foto removerFoto = manager.find(Foto.class, foto.getId());
 		fileManagement.delete(removerFoto.getCaminho());
 		System.out.println("------------- APAGANDO FOTO S3-----------------");
-		manager.remove(removerFoto);
-		
+		manager.remove(removerFoto);	
 	}
 
 	public Foto find(Long fotoId) {

@@ -30,7 +30,7 @@ public class Servico {
 	// Relação one to one
 	@Embedded
 	private Endereco endereco;
-	
+
 	@OneToOne
 	private Foto fotoPrincipal;
 
@@ -59,21 +59,21 @@ public class Servico {
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public Foto getFotoPrincipal() {
-		if (fotos == null | fotos.size() == 0) {
-			Foto foto = new Foto();
-			foto.setCaminho("https://s3.amazonaws.com/successgeneration-teste/photonotavailable.jpeg");
+
+		if (this.fotoPrincipal == null) {
+			fotoPrincipal = new Foto();
+			fotoPrincipal.setCaminho("https://s3.amazonaws.com/successgeneration-teste/photonotavailable.jpeg");
 			System.out.println("------ FOTO VAZIA CRIADA----------");
-			this.fotoPrincipal = foto;
 		}
-		
 		return this.fotoPrincipal;
 	}
 
 	public void setFotoPrincipal(Foto fotoPrincipal) {
 		this.fotoPrincipal = fotoPrincipal;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}

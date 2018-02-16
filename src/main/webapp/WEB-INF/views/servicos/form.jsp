@@ -9,7 +9,7 @@
 		</c:if>
 		<form:form action="/succesgeneration/servicos/servicosAdd"
 			method="POST" modelAttribute="servico">
-			<form:input type="text" path="nome" placeholder="O que foi feito: Drywall/Reparo..." />
+			<form:input type="text" required="required" path="nome" placeholder="O que foi feito: Drywall/Reparo..." />
 			<form:input type="text" path="inicio" placeholder="Início dd/mm/aaaa" />
 			<form:input type="text" path="termino" placeholder="Termino dd/mm/aaaa" />
 			<form:input type="text" path="endereco.pais" placeholder="País" />

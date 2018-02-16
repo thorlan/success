@@ -44,30 +44,21 @@ public class ServicosController {
 	@RequestMapping("/servicos/servicosAdd") // recupera o modelAttribute do form
 	public ModelAndView servicosAdd(@ModelAttribute("servico") Servico servico) {
 
-		ModelAndView modelAndView;
+		ModelAndView modelAndView = new ModelAndView("redirect:/servicos/mostrarComFoto");
 
 		Foto foto = new Foto();
 		foto.setServico(servico);
-
-		if (servico.getId() != null) {
-			modelAndView = new ModelAndView("redirect:/servicos/mostrarComFoto");
-		} else {
-			modelAndView = new ModelAndView("/servicos/fotoservico");
-			logger.info(
-					"Serviço : " + servico.getNome() + " , de ID " + servico.getId() + " foi inserido no banco de dados");
-		}
 
 		servicoDao.gravar(servico);
 		
 		modelAndView.addObject("foto", foto);
 		modelAndView.addObject("servico", servico);
 		modelAndView.addObject("servicoId", servico.getId());
-
+		
 		return modelAndView;
 
 	}
 
-	// Lista todos os serviços cadastrados
 	@RequestMapping("/servicos")
 	public ModelAndView listar() {
 
@@ -87,24 +78,18 @@ public class ServicosController {
 		Servico servico = new Servico();
 		servico.setId(servicoId);
 		servicoDao.excluir(servico);
-		// FAZ LIMPAR A BARRA DE ENDERECO, EVITANDO QUE UM F5 LANCE UMA EXCEPTION
 		ModelAndView modelAndView = new ModelAndView("redirect:/servicos");
-
 		mensagem = "Serviço apagado com sucesso";
-		// modelAndView.addObject("mensagem", mensagem);
 
 		return modelAndView;
 	}
 
-	// Update no serviço selecionado!
 	@RequestMapping("/servicos/updateservico")
 	public ModelAndView alterar(Long servicoId) {
 
 		Servico servico = servicoDao.find(servicoId);
-
 		ModelAndView modelAndView = new ModelAndView("/servicos/form");
 		modelAndView.addObject("servico", servico);
-
 		return modelAndView;
 	}
 

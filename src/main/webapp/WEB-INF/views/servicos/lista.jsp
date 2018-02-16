@@ -1,9 +1,15 @@
 <%@ include file="/WEB-INF/views/cabecalho.jsp"%>
 
+<div class="container">
+	<br>
+	<c:if test="${mensagem.length() > 2}">
+		<div class="alert alert-success alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<p>${mensagem }</p>
+		</div>
+	</c:if>
+</div>
 <div class="main">
-
-	<p>${mensagem }</p>
-
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
@@ -42,10 +48,7 @@
 						href="${s:mvcUrl('SC#enviarPorEmail').arg(0,servico.id).build() }">
 							<img src="${imgPath}/email.png" alt="" width="25" height="25" />
 					</a></td>
-					<td><a
-						href="#">
-							FB
-					</a></td>
+					<td><a href="#"> FB </a></td>
 				</tr>
 			</c:forEach>
 

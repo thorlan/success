@@ -26,11 +26,18 @@ public class ServicoDAO {
 	@PersistenceContext
 	private EntityManager manager;
 
-	public void gravar(Servico servico) {
-		if (servico.getId() == null)
+	public String gravar(Servico servico) {
+		
+		String mensagem = "Serviço ";
+		if (servico.getId() == null) {
 			manager.persist(servico);
-		else
+			mensagem += "adicionado com sucesso";
+		}	
+		else {
 			manager.merge(servico);
+			mensagem += "alterado com sucesso";
+		}
+			return mensagem;
 	}
 
 	public List<Servico> listar() {
@@ -49,9 +56,8 @@ public class ServicoDAO {
 		manager.remove(removerServico);
 
 	}
-
+	
 	public Servico find(Long servicoId) {
-		
 		return manager.find(Servico.class, servicoId);
 	}
 
@@ -61,5 +67,4 @@ public class ServicoDAO {
 		gravar(gravarServico);
 
 	}
-
 }

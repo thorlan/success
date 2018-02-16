@@ -1,5 +1,7 @@
 <%@ include file="/WEB-INF/views/cabecalho.jsp"%>
+
 <div class="formularios">
+
 	<div class="form-style-8 voando">
 		<c:if test="${servico.id != null}">
 			<h2>Alterar Serviço</h2>
@@ -9,7 +11,7 @@
 		</c:if>
 		<form:form action="/succesgeneration/servicos/servicosAdd"
 			method="POST" modelAttribute="servico">
-			<form:input type="text" path="nome"
+			<form:input type="text" required="required" path="nome"
 				placeholder="O que foi feito: Drywall/Reparo..." />
 			<form:input type="text" path="inicio" placeholder="Início dd/mm/aaaa" />
 			<form:input type="text" path="termino"
@@ -17,7 +19,8 @@
 			<form:input type="text" path="endereco.pais" placeholder="País" />
 			<form:input type="text" path="endereco.localidade"
 				placeholder="Local" />
-			<form:textarea class="form-control" placeholder="Descrição" path="descricao" rows="10" cols="30"></form:textarea>
+			<form:textarea class="form-control" placeholder="Descrição"
+				path="descricao" rows="10" cols="30"></form:textarea>
 			<c:if test="${servico.id != null}">
 				<div class="form-group">
 					<input type="submit" value="Atualizar" class="btn btn-primary" />
@@ -41,8 +44,8 @@
 						.build() }"
 			modelAttribute="foto" method="post" enctype="multipart/form-data">
 
-			<form:input type="file" class="form-control" id="caminho"
-				path="caminho" aria-describedby="inicioHelp" />
+			<form:input required="required" type="file" class="form-control"
+				id="caminho" path="caminho" aria-describedby="inicioHelp" />
 			<form:input type="text" class="form-control" id="descricao"
 				path="descricao" aria-describedby="inicioHelp"
 				placeholder="Breve descrição da imagem" />
@@ -52,7 +55,30 @@
 	</div>
 </div>
 
+<div class="container">
+	<br>
+
+	<c:if test="${mensagem.startsWith('Foto')}">
+		<div class="alert alert-success alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<strong>${mensagem }</strong>
+		</div>
+	</c:if>
+	<c:if test="${mensagem.startsWith('Não')}">
+		<div class="alert alert-danger alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<strong>${mensagem }</strong> <br>
+			<span>Você pode apagar o servico clicando 
+				<a href="/succesgeneration/servicos/">aqui</a> e depois clique na lixeira
+				referente ao serviço desejado
+			</span>
+		</div>
+	</c:if>
+
+</div>
+
 <div class="main">
+
 	<c:forEach items="${fotos}" var="foto">
 		<div class="fotos-edicao">
 			<div class="gallery">
@@ -60,7 +86,9 @@
 				<c:if test="${servico.fotoPrincipal.id != foto.id}">
 					<a href="${s:mvcUrl('FC#tornarPrincipal').arg(0,foto.id).build() }">
 						<div class="deletar-icone">
-							<img src="${imgPath}/mainPageIcon.png" alt = "Tornar foto principal" title="Mostrar como capa em 'nossos serviços'"/>
+							<img src="${imgPath}/mainPageIcon.png"
+								alt="Tornar foto principal"
+								title="Mostrar como capa em 'nossos serviços'" />
 						</div>
 					</a>
 				</c:if>
@@ -70,7 +98,7 @@
 				<div class="desc">${foto.descricao }</div>
 				<a href="${s:mvcUrl('FC#excluirFoto').arg(0,foto.id).build() }">
 					<div class="deletar-icone">
-						<img src="${imgPath}/lixeira.png" title ="Deletar foto" />
+						<img src="${imgPath}/lixeira.png" title="Deletar foto" />
 					</div>
 				</a>
 			</div>
