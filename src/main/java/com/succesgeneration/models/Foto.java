@@ -51,7 +51,7 @@ public class Foto {
 	
 	@Override
 	public String toString() {
-		return "Foto [servico=" + servico + ", id=" + id + ", descricao=" + descricao + ", caminho=" + caminho + "]";
+		return "Foto [ descricao=" + descricao + ", caminho=" + caminho + "]";
 	}
 	
 	

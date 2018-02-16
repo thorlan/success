@@ -129,7 +129,7 @@ public class Servico {
 	@Override
 	public String toString() {
 		return "Servico [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", endereco=" + endereco
-				+ ", inicio=" + inicio + ", termino=" + termino + ", fotos=" + fotos + "]";
+				+ ", inicio=" + inicio + ", termino=" + termino + ", fotos=" + fotos + "] \n";
 	}
 
 	public void setFoto(Foto foto) {

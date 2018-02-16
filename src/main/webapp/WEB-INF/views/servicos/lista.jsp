@@ -14,6 +14,8 @@
 				<th scope="col">Localidade</th>
 				<th scope="col">-</th>
 				<th scope="col">-</th>
+				<th scope="col">-</th>
+				<th scope="col">-</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,17 +28,23 @@
 					<td>${servico.termino }</td>
 					<td>${servico.endereco.pais }</td>
 					<td>${servico.endereco.localidade }</td>
-					<td>
-						<a href="${s:mvcUrl('SC#excluir').arg(0,servico.id).build() }" 
-							onclick="return confirm('Tem certeza que deseja excluir o serviço?');"> 
-						<img src="${imgPath}/lixeira.png"
-								alt="" width="25" height="25" data-id="${servico.id }"/>
-						</a>
-						
-					</td>
+					<td><a
+						href="${s:mvcUrl('SC#excluir').arg(0,servico.id).build() }"
+						onclick="return confirm('Tem certeza que deseja excluir o serviço?');">
+							<img src="${imgPath}/lixeira.png" alt="" width="25" height="25"
+							data-id="${servico.id }" />
+					</a></td>
 					<td><a
 						href="${s:mvcUrl('FC#mostrarComFotos').arg(0,servico.id).build() }">
 							<img src="${imgPath}/iPhoto.png" alt="" width="25" height="25" />
+					</a></td>
+					<td><a
+						href="${s:mvcUrl('SC#enviarPorEmail').arg(0,servico.id).build() }">
+							<img src="${imgPath}/email.png" alt="" width="25" height="25" />
+					</a></td>
+					<td><a
+						href="#">
+							FB
 					</a></td>
 				</tr>
 			</c:forEach>

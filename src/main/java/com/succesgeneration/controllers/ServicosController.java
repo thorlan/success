@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.succesgeneration.daos.ServicoDAO;
+import com.succesgeneration.infra.EnviadorDeEmail;
 import com.succesgeneration.models.Endereco;
 import com.succesgeneration.models.Foto;
 import com.succesgeneration.models.Servico;
@@ -23,6 +24,9 @@ public class ServicosController {
 
 	@Autowired
 	private ServicoDAO servicoDao;
+	
+	@Autowired
+	private EnviadorDeEmail enviadorDeEmail;
 
 	@RequestMapping("/servicos/form")
 	public ModelAndView form() {
@@ -49,14 +53,12 @@ public class ServicosController {
 			modelAndView = new ModelAndView("redirect:/servicos/mostrarComFoto");
 		} else {
 			modelAndView = new ModelAndView("/servicos/fotoservico");
+			logger.info(
+					"Serviço : " + servico.getNome() + " , de ID " + servico.getId() + " foi inserido no banco de dados");
 		}
 
-		logger.info("Inserindo novo serviço no banco de dados \n");
 		servicoDao.gravar(servico);
-
-		logger.info(
-				"Serviço : " + servico.getNome() + " , de ID " + servico.getId() + " foi inserido no banco de dados");
-
+		
 		modelAndView.addObject("foto", foto);
 		modelAndView.addObject("servico", servico);
 		modelAndView.addObject("servicoId", servico.getId());
@@ -119,6 +121,16 @@ public class ServicosController {
 		Servico servico = servicoDao.find(servicoId);
 		modelAndView.addObject("servico", servico);
 
+		return modelAndView;
+	}
+	
+	@RequestMapping("/enviarPorEMail")
+	public ModelAndView enviarPorEmail(Long servicoId) {
+		Servico servico = servicoDao.find(servicoId);
+		ModelAndView modelAndView = new ModelAndView("redirect:/servicos");
+		mensagem = "Serviço foi enviado para todos os e-mails cadastrados em nossa lista";
+		enviadorDeEmail.enviarServicoPorEmail(servico);
+		
 		return modelAndView;
 	}
 	
